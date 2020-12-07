@@ -1,5 +1,19 @@
 <html>
 <body>
-<div> {{some}}</div>
+<div>
+    <form method="post">
+        <input type="text" name="name" placeholder="Введите название: ">
+        <input type="text" name="year" placeholder="Год: ">
+        <button type="submit">Добавить</button>
+    </form>
+</div>
+    <div> Список компуктеров </div>
+    {{#computers}}
+        <div>
+            <b>{{id}}</b>
+            <span>{{name}}</span>
+            <i>{{year}}</i>
+        </div>
+    {{/computers}}
 </body>
 </html>
