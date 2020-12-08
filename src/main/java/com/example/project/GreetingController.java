@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -41,5 +42,18 @@ public class GreetingController {
         model.put("computers", computers);
         return "main";
 
+    }
+
+    @PostMapping("filter")
+    public String filter(@RequestParam String filter, Map<String, Object> model){
+        Iterable<Computers> computers;
+        if(filter != null && !filter.isEmpty()){
+            computers = computeresRepos.findByName(filter);
+
+        }else{
+            computers = computeresRepos.findAll();
+        }
+        model.put("computers", computers);
+         return "main";
     }
 }
