@@ -17,14 +17,12 @@ public class GreetingController {
     @Autowired
     private ComputersRepos computeresRepos;
 
-    @GetMapping("/greeting")
-    public String greeting(@RequestParam(name="name", required=false, defaultValue="World") String name,
-                           Map<String, Object> model) {
-        model.put("name", name);
+    @GetMapping("/")
+    public String greeting(Map<String, Object> model) {
         return "greeting";
     }
 
-    @GetMapping
+    @GetMapping("/main")
     public String main(Map<String, Object> model) {
         Iterable<Computers> computers = computeresRepos.findAll();
 
@@ -32,7 +30,7 @@ public class GreetingController {
         return "main";
     }
 
-    @PostMapping
+    @PostMapping("/main")
     public String add(@RequestParam String name, @RequestParam Integer year, Map<String, Object> model){
       Computers computer =  new Computers(name, year);
 
